@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 220" width="680" height="220">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&amp;family=Oswald:wght@300;400&amp;display=swap');
+    </style>
+    <linearGradient id="sky-mid" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#8aa8bc" stop-opacity="0.55"/>
+      <stop offset="55%"  stop-color="#9ab8c8" stop-opacity="0.45"/>
+      <stop offset="85%"  stop-color="#c8a870" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#b89060" stop-opacity="0.38"/>
+    </linearGradient>
+    <linearGradient id="field-mid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#7a9e6a"/>
+      <stop offset="100%" stop-color="#3e5434"/>
+    </linearGradient>
+    <radialGradient id="sun-glow" cx="80%" cy="90%" r="50%">
+      <stop offset="0%"   stop-color="#d4a040" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#d4a040" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="220" fill="#e8e0d0"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="680" height="3" fill="#7a9470"/>
+
+  <!-- FIELDSTONE -->
+  <text x="64" y="100"
+    font-family="'Lora', Georgia, serif"
+    font-size="72"
+    font-weight="600"
+    letter-spacing="4"
+    fill="#243020">FIELDSTONE</text>
+
+  <!-- Group Holdings -->
+  <text x="66" y="122"
+    font-family="'Oswald', 'Gill Sans', sans-serif"
+    font-size="13"
+    font-weight="300"
+    letter-spacing="7"
+    fill="#5a7850">Group Holdings</text>
+
+  <!-- Panoramic landscape -->
+  <!-- Sky -->
+  <rect x="64" y="140" width="552" height="36" fill="url(#sky-mid)"/>
+  <rect x="64" y="140" width="552" height="36" fill="url(#sun-glow)"/>
+
+  <!-- Sun -->
+  <ellipse cx="574" cy="162" rx="22" ry="22" fill="#d4a040" opacity="0.18"/>
+  <ellipse cx="574" cy="162" rx="12" ry="12" fill="#e8b84a" opacity="0.28"/>
+  <ellipse cx="574" cy="162" rx="6"  ry="6"  fill="#f0c860" opacity="0.38"/>
+
+  <!-- Treeline -->
+  <path d="M64,168 Q124,162 184,166 Q244,160 304,165 Q374,161 444,165 Q504,160 564,164 Q592,162 616,165 L616,175 L64,175 Z"
+        fill="#5a7850" opacity="0.55"/>
+
+  <!-- Horizon -->
+  <rect x="64" y="174" width="552" height="2" fill="#4a6840" opacity="0.7"/>
+
+  <!-- Field -->
+  <rect x="64" y="176" width="552" height="32" fill="url(#field-mid)"/>
+
+  <!-- Furrows -->
+  <line x1="64" y1="187" x2="616" y2="187" stroke="#3e5434" stroke-width="1" opacity="0.4"/>
+  <line x1="64" y1="197" x2="616" y2="197" stroke="#3e5434" stroke-width="1" opacity="0.28"/>
+
+  <!-- Stone wall -->
+  <rect x="64"  y="196" width="46"  height="12" rx="1.5" fill="#344830" opacity="0.80"/>
+  <rect x="113" y="196" width="32"  height="12" rx="1.5" fill="#344830" opacity="0.65"/>
+  <rect x="148" y="196" width="56"  height="12" rx="1.5" fill="#344830" opacity="0.75"/>
+  <rect x="207" y="196" width="36"  height="12" rx="1.5" fill="#344830" opacity="0.58"/>
+  <rect x="246" y="196" width="50"  height="12" rx="1.5" fill="#344830" opacity="0.70"/>
+  <rect x="299" y="196" width="28"  height="12" rx="1.5" fill="#344830" opacity="0.62"/>
+  <rect x="330" y="196" width="60"  height="12" rx="1.5" fill="#344830" opacity="0.78"/>
+  <rect x="393" y="196" width="40"  height="12" rx="1.5" fill="#344830" opacity="0.60"/>
+  <rect x="436" y="196" width="34"  height="12" rx="1.5" fill="#344830" opacity="0.68"/>
+  <rect x="473" y="196" width="52"  height="12" rx="1.5" fill="#344830" opacity="0.55"/>
+  <rect x="528" y="196" width="38"  height="12" rx="1.5" fill="#344830" opacity="0.72"/>
+  <rect x="569" y="196" width="47"  height="12" rx="1.5" fill="#344830" opacity="0.64"/>
+</svg>
