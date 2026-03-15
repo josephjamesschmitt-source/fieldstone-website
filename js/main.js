@@ -35,32 +35,61 @@
     });
   });
 
-  // ---------- Map tooltips ----------
+  // ---------- Map tooltips with personal messages ----------
   var tooltip = document.querySelector('.map-tooltip');
   var mapWrap = document.querySelector('.geo-map-wrap');
 
   if (tooltip && mapWrap) {
-    var stateNames = {
-      WI: 'Wisconsin', IL: 'Illinois', IN: 'Indiana',
-      OH: 'Ohio', MI: 'Michigan', PA: 'Pennsylvania', FL: 'Florida'
+    var stateInfo = {
+      WI: { name: 'Wisconsin', note: "Joe's family is based here" },
+      MI: { name: 'Michigan', note: "Joe's family is based here" },
+      IL: { name: 'Illinois', note: '' },
+      IN: { name: 'Indiana', note: '' },
+      OH: { name: 'Ohio', note: '' },
+      PA: { name: 'Pennsylvania', note: "Tom's family is based here" },
+      FL: { name: 'Florida', note: "Tom's family is based here" }
     };
 
     mapWrap.querySelectorAll('.state-highlight').forEach(function (state) {
       state.addEventListener('mouseenter', function (e) {
         var id = this.getAttribute('data-state');
-        tooltip.textContent = stateNames[id] || id;
+        var info = stateInfo[id];
+        if (info) {
+          tooltip.innerHTML = '<strong>' + info.name + '</strong>' +
+            (info.note ? '<span class="tooltip-note">' + info.note + '</span>' : '');
+        } else {
+          tooltip.textContent = id;
+        }
         tooltip.classList.add('visible');
       });
 
       state.addEventListener('mousemove', function (e) {
         var rect = mapWrap.getBoundingClientRect();
-        tooltip.style.left = (e.clientX - rect.left + 12) + 'px';
-        tooltip.style.top = (e.clientY - rect.top - 32) + 'px';
+        tooltip.style.left = (e.clientX - rect.left + 14) + 'px';
+        tooltip.style.top = (e.clientY - rect.top - 50) + 'px';
       });
 
       state.addEventListener('mouseleave', function () {
         tooltip.classList.remove('visible');
       });
+    });
+  }
+
+  // ---------- Scroll-triggered fade-in animations ----------
+  var animatedEls = document.querySelectorAll('.section');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animatedEls.forEach(function (el) {
+      el.classList.add('section--animate');
+      observer.observe(el);
     });
   }
 
