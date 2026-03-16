@@ -75,6 +75,25 @@
     });
   }
 
+  // ---------- Team card hover → highlight states on map ----------
+  document.querySelectorAll('.roots-card[data-highlights]').forEach(function (card) {
+    var states = card.getAttribute('data-highlights').split(',');
+
+    card.addEventListener('mouseenter', function () {
+      states.forEach(function (st) {
+        var el = document.querySelector('.state-highlight[data-state="' + st.trim() + '"]');
+        if (el) el.classList.add('state-glow');
+      });
+    });
+
+    card.addEventListener('mouseleave', function () {
+      states.forEach(function (st) {
+        var el = document.querySelector('.state-highlight[data-state="' + st.trim() + '"]');
+        if (el) el.classList.remove('state-glow');
+      });
+    });
+  });
+
   // ---------- Scroll-triggered fade-in animations ----------
   var animatedEls = document.querySelectorAll('.section');
   if ('IntersectionObserver' in window) {
