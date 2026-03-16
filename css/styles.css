@@ -1544,6 +1544,10 @@ h1, h2, h3, h4 {
     max-width: 400px;
   }
 
+  .process-step h3 {
+    min-height: auto;
+  }
+
   .roots-map-layout {
     grid-template-columns: 1fr;
     gap: 24px;
