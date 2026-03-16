@@ -582,6 +582,11 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
+/* Chevron icon — hidden on desktop, visible on mobile */
+.approach-chevron {
+  display: none;
+}
+
 /* ---------- Team ---------- */
 /* ---------- Combined Roots Section (Team + Geography) ---------- */
 .roots-section {
@@ -1048,6 +1053,10 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
+.industry-text {
+  min-width: 0;
+}
+
 .criteria-note {
   font-size: 0.9rem;
   color: var(--text-mid);
@@ -1408,58 +1417,7 @@ h1, h2, h3, h4 {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .approach-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .criteria-industries {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-
-  .process-timeline {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .process-connector {
-    display: none;
-  }
-
-  .about-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-heading {
-    font-size: 1.6rem;
-  }
-
-  .about-card {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
-
-  .roots-card-top {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .roots-circle {
-    width: 120px;
-    height: 120px;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .team-card {
-    padding: 28px;
-  }
-}
-
-@media (max-width: 900px) {
+  /* --- Hero --- */
   .hero-top {
     padding: 24px;
   }
@@ -1507,6 +1465,7 @@ h1, h2, h3, h4 {
     font-size: 1rem;
   }
 
+  /* --- Sections --- */
   .section {
     padding: 56px 20px;
   }
@@ -1515,37 +1474,173 @@ h1, h2, h3, h4 {
     font-size: 1.7rem;
   }
 
+  /* --- About --- */
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-heading {
+    font-size: 1.6rem;
+  }
+
+  .about-card {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  /* --- Approach: Mobile Accordion --- */
   .approach-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .approach-card {
-    padding: 24px 16px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    cursor: pointer;
+    background: transparent;
   }
 
-  .team-grid {
+  .approach-card:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .approach-card:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .approach-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 16px 0 0;
+    padding: 8px;
+    flex-shrink: 0;
+  }
+
+  .approach-card h3 {
+    flex: 1;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .approach-chevron {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    transition: transform 0.3s;
+    stroke: rgba(255, 255, 255, 0.5);
+  }
+
+  .approach-card--open .approach-chevron {
+    transform: rotate(180deg);
+  }
+
+  .approach-card p {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
+    padding: 0 0 0 56px;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
+  }
+
+  .approach-card--open p {
+    max-height: 200px;
+    opacity: 1;
+    padding: 12px 0 4px 56px;
+  }
+
+  /* --- Criteria --- */
+  .criteria-metrics {
+    max-width: 100%;
+  }
+
+  .criteria-metric {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 16px 0;
+  }
+
+  .metric-value {
+    font-size: 1.05rem;
+  }
+
+  .criteria-industries {
     grid-template-columns: 1fr;
-    gap: 32px;
+    max-width: 100%;
+    gap: 24px;
   }
 
-  .roots-card {
-    padding: 24px;
+  .industry-card {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    text-align: left;
+    align-items: start;
   }
 
-  .team-photo {
-    width: 140px;
-    height: 140px;
+  .industry-image {
+    height: 100px;
+    border-radius: 8px;
+    margin-bottom: 0;
   }
 
+  .industry-card h4 {
+    margin-bottom: 6px;
+  }
+
+  .industry-card p {
+    font-size: 0.85rem;
+  }
+
+  .criteria-section-heading {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+  }
+
+  /* --- Process --- */
   .process-timeline {
     grid-template-columns: 1fr;
     gap: 32px;
     max-width: 400px;
   }
 
+  .process-connector {
+    display: none;
+  }
+
   .process-step h3 {
     min-height: auto;
+  }
+
+  /* --- Team --- */
+  .roots-card-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .roots-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .roots-card {
+    padding: 24px;
   }
 
   .roots-map-layout {
@@ -1553,6 +1648,26 @@ h1, h2, h3, h4 {
     gap: 24px;
   }
 
+  /* --- Contact --- */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    padding: 28px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .team-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* --- Footer --- */
   .site-footer {
     padding: 36px 24px 24px;
   }
@@ -1565,10 +1680,13 @@ h1, h2, h3, h4 {
   .footer-right {
     align-items: flex-start;
   }
-}
 
-@media (max-width: 420px) {
-  .approach-grid {
-    grid-template-columns: 1fr;
+  /* --- Pull Quote --- */
+  .pull-quote {
+    font-size: 1.2rem;
+  }
+
+  .pull-quote-section {
+    padding: 56px 20px;
   }
 }

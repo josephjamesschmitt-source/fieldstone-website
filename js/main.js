@@ -94,6 +94,26 @@
     });
   });
 
+  // ---------- Approach cards — mobile accordion ----------
+  function isMobile() {
+    return window.innerWidth <= 900;
+  }
+
+  document.querySelectorAll('.approach-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      if (!isMobile()) return;
+      var wasOpen = card.classList.contains('approach-card--open');
+      // Close all others
+      document.querySelectorAll('.approach-card').forEach(function (c) {
+        c.classList.remove('approach-card--open');
+      });
+      // Toggle clicked one
+      if (!wasOpen) {
+        card.classList.add('approach-card--open');
+      }
+    });
+  });
+
   // ---------- Scroll-triggered fade-in animations ----------
   var animatedEls = document.querySelectorAll('.section');
   if ('IntersectionObserver' in window) {
