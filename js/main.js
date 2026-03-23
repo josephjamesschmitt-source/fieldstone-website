@@ -5,6 +5,18 @@
 (function () {
   'use strict';
 
+  // ---------- Sticky nav on scroll ----------
+  var heroTop = document.querySelector('.hero-top');
+  if (heroTop) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 80) {
+        heroTop.classList.add('nav-scrolled');
+      } else {
+        heroTop.classList.remove('nav-scrolled');
+      }
+    }, { passive: true });
+  }
+
   // ---------- Mobile nav toggle ----------
   const toggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
@@ -113,6 +125,58 @@
       }
     });
   });
+
+  // ---------- Book scroll animation ----------
+  (function initBookScroll() {
+    var canvas = document.getElementById('book-canvas');
+    var section = document.querySelector('.book-scroll-section');
+    if (!canvas || !section) return;
+
+    var ctx = canvas.getContext('2d');
+    var totalFrames = 121;
+    var frames = [];
+    var loaded = 0;
+    var currentFrame = -1;
+
+    // Preload all frames
+    for (var i = 1; i <= totalFrames; i++) {
+      var img = new Image();
+      img.src = 'images/book-frames/frame_' + String(i).padStart(4, '0') + '.jpg';
+      img.onload = function () {
+        loaded++;
+        if (loaded === totalFrames) {
+          // All loaded — draw first frame and start listening
+          drawFrame(0);
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll(); // draw correct frame on load
+        }
+      };
+      frames.push(img);
+    }
+
+    // Size canvas to first frame dimensions
+    canvas.width = 1284;
+    canvas.height = 716;
+
+    function drawFrame(index) {
+      if (index === currentFrame) return;
+      currentFrame = index;
+      var img = frames[index];
+      if (img && img.complete) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function onScroll() {
+      var rect = section.getBoundingClientRect();
+      var sectionHeight = section.offsetHeight - window.innerHeight;
+      var scrolled = -rect.top;
+      var progress = Math.max(0, Math.min(1, scrolled / sectionHeight));
+      var frameIndex = Math.min(totalFrames - 1, Math.floor(progress * totalFrames));
+      drawFrame(frameIndex);
+    }
+  })();
 
   // ---------- Scroll-triggered fade-in animations ----------
   var animatedEls = document.querySelectorAll('.section');
